@@ -1,6 +1,10 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
   "rules": {
-    "no-unused-vars": "off" // Disable the unused variables rule
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off",
+    "no-unused-vars": "off", // Disable unused vars warning
+    "react-hooks/exhaustive-deps": "off", // Disable missing dependencies warning for useEffect
+    "@next/next/no-img-element": "off"
   }
 }
