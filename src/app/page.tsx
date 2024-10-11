@@ -1,28 +1,17 @@
-import ArticalCard from "./components/home/Card";
-import { getLastArticals } from "./models";
-import { IArtical } from "./models/artical";
-import SwiperCompon from "./components/home/SwiperCompon";
+import { revalidatePath } from "next/cache";
+import RoomCard from "./components/RoomCard";
+import Api from "@/app/services/api";
 
 export default async function handler() {
-  const lastArticals = await getLastArticals();
-  const articles = await getLastArticals();
+  const rooms: [] = await Api.getAllRooms();
+  console.log(rooms);
+  revalidatePath("/", "layout");
 
   return (
     <>
-      <SwiperCompon articles={articles} />
-      <div className="p-10 flex  gap-5 flex-wrap  justify-around ">
-        {lastArticals.map((artical: IArtical) => (
-          <ArticalCard
-            key={artical._id}
-            _id={artical._id}
-            title={artical.title}
-            content={artical.content}
-            tag={artical.tag}
-            author={artical.author}
-            image={artical.image}
-          />
-        ))}
-      </div>
+      {rooms.map((room) => (
+        <RoomCard {...room} key={room.$id} id={room.$id} />
+      ))}
     </>
   );
 }

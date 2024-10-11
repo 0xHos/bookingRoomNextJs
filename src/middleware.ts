@@ -1,22 +1,19 @@
-// middleware.ts
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { cookies } from "next/headers";
+import { NextResponse, NextRequest } from "next/server";
 
-export function middleware(req: NextRequest) {
-  // // Your Middleware logic here
-  // const { pathname } = req.nextUrl;
-  // if (pathname.startsWith("/admin")) {
-  //   console.log(" done admin");
-  // } else if (pathname.startsWith("/hi")) {
-  //   console.log(" done hi");
-  // } else {
-  //   console.log(" done ==========");
-  // }
+export async function middleware(request: NextRequest) {
+  // const { pathname } = request.nextUrl;
+  const session = cookies().get("appwrite-session");
+
+  const isAuth = session ? true : false;
+
+  if (!isAuth) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+  return NextResponse.next();
 }
 
-// function uploaderMiddleware(req: NextRequest) {
-//   console.log("uploader middleware....");
-//   ne
-// }
-
-export const config = {};
+export const config = {
+  // make middleware run for this path
+  matcher: ["/bookings", "/room/add", "/rooms/my"],
+};
