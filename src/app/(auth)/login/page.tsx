@@ -8,23 +8,28 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 export default function Login() {
-  const [state, formAction] = useFormState(createSession, {});
+  const initialState = {
+    error: "",
+    success: "",
+    auth: { jwt: "", userId: "" },
+  };
+  const [state, formAction] = useFormState(createSession, initialState);
   const router = useRouter();
-  // const auth = useSelector((state) => state.authSlice);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (state?.error) {
-      toast.error(state?.error);
+      toast.error(state.error);
     }
     if (state?.success) {
-      toast.success(state?.success);
+      toast.success(state.success);
       router.push("/room/add");
-      localStorage.setItem("jwtappwrite", state.auth?.jwt);
-      localStorage.setItem("userIdappwrite", state.auth?.userId);
-      dispatch(login({ token: state.auth?.jwt }));
+      localStorage.setItem("jwtappwrite", state.auth.jwt);
+      localStorage.setItem("userIdappwrite", state.auth.userId);
+      dispatch(login({ token: state.auth.jwt }));
     }
-  }, [state]);
+  }, [state, router, dispatch]);
+
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
