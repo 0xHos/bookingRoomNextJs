@@ -5,7 +5,10 @@ import { useFormState } from "react-dom";
 import { toast } from "react-toastify";
 
 export default function Signup() {
-  const [state, formAction] = useFormState(createUser, {});
+  const [state, formAction] = useFormState(createUser, {
+    success: false,
+    msg: "",
+  });
 
   useEffect(() => {
     if (state?.error) {

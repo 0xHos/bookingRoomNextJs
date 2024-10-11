@@ -2,9 +2,9 @@
 import { cookies } from "next/headers";
 import API from "../services/api";
 
-export async function createSession(prevState, formData) {
-  const email = formData.get("email");
-  const password = formData.get("password");
+export async function createSession(formData: FormData) {
+  const email = formData.get("email")?.toString();
+  const password = formData.get("password")?.toString();
 
   if (!email || !password) {
     return {
