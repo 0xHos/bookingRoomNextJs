@@ -4,13 +4,13 @@ import { login } from "@/app/store/authSlice";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 export default function Login() {
   const [state, formAction] = useFormState(createSession, {});
   const router = useRouter();
-  const auth = useSelector((state) => state.authSlice);
+  // const auth = useSelector((state) => state.authSlice);
   const dispatch = useDispatch();
 
   useEffect(() => {

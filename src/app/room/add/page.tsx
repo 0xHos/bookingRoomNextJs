@@ -3,7 +3,7 @@ import { createRoom } from "@/app/actions/createRoom";
 import { useFormState } from "react-dom";
 
 export default function AddRoom() {
-  const [state, formAction] = useFormState(createRoom, {});
+  const [, formAction] = useFormState(createRoom, {});
   return (
     <form action={formAction} className="space-y-3 shadow-md bg-white p-6">
       <h1 className="text-2xl font-extrabold">Add Room</h1>

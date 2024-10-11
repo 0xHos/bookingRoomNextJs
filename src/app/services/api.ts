@@ -54,7 +54,7 @@ export default class API {
         userId,
       };
     } catch (err) {
-      console.log("err login ");
+      console.log("err login ", err);
       return {
         error: "Invalid email or password.",
       };
@@ -78,7 +78,7 @@ export default class API {
       const response = await axios.get(Endpoint, { headers });
       return response.data;
     } catch (err) {
-      console.log("err get  room ");
+      console.log("err get  room ", err);
       return {
         error: "Room Not Found",
       };
