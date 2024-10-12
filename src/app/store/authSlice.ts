@@ -17,8 +17,16 @@ const authSlice = createSlice({
       state.isAuth = false;
       state.token = "";
     },
+    checkIsHaveAuth: (state) => {
+      console.log("checkIsHaveAuth");
+      const jwt = localStorage.getItem("jwtappwrite");
+      if (jwt) {
+        state.isAuth = true;
+        state.token = jwt;
+      }
+    },
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, checkIsHaveAuth } = authSlice.actions;
 export default authSlice.reducer;

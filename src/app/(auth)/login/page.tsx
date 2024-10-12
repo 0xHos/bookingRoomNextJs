@@ -21,7 +21,7 @@ export default function Login() {
     if (state?.success && state.auth) {
       // Ensure auth exists when success is present
       toast.success(state.success);
-      router.push("/room/add");
+      router.push("/rooms/my");
       localStorage.setItem("jwtappwrite", state.auth.jwt);
       localStorage.setItem("userIdappwrite", state.auth.userId);
       dispatch(login({ token: state.auth.jwt }));

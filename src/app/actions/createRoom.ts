@@ -1,15 +1,18 @@
-// "use server";
+"use server";
+import { cookies } from "next/headers";
 import API from "../services/api";
 import { IRoom } from "../types/type";
 export async function createRoom(prevState, formData) {
-  const jwt: string = localStorage.getItem("jwtappwrite") || "";
-  const user_id: string = localStorage.getItem("userIdappwrite") || "";
+  const jwt: string = cookies().get("appwrite-session")?.value || "";
+  const user_id: string = cookies().get("appwrite-user_id")?.value || "";
 
   const title: string = formData.get("title");
   const description: string = formData.get("description");
   const address: string = formData.get("address");
   const availability: string = formData.get("availability");
   const price: string = formData.get("price");
+  const img: string = formData.get("image");
+
   const room: IRoom = {
     user_id,
     title,
@@ -17,11 +20,12 @@ export async function createRoom(prevState, formData) {
     address,
     availability,
     price,
+    img,
   };
 
-  const auth = await API.createRoom(jwt, room);
+  const areRoomCreated = await API.createRoom(jwt, room);
   return {
-    success: "Login success",
-    auth: auth,
+    success: areRoomCreated.success,
+    msg: areRoomCreated.msg,
   };
 }

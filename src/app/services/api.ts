@@ -30,7 +30,7 @@ export default class API {
         userId,
       };
     } catch (err) {
-      console.log("error signup ", err);
+      console.log("error signup ");
       return {
         error: "error create user please check email or password",
       };
@@ -101,14 +101,23 @@ export default class API {
             address: room.address,
             availability: room.availability,
             price: room.price,
+            img: room.img,
           },
         },
         { headers }
       );
-      console.log("create room:", response);
-      return response.data;
+      console.log("create room:");
+      return {
+        success: true,
+        msg: "room is created",
+      };
     } catch (err) {
-      console.log("err get  room ", err);
+      console.log("create room error:");
+
+      return {
+        success: false,
+        msg: "room not created",
+      };
     }
   }
 

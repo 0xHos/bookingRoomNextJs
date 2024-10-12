@@ -6,6 +6,7 @@ export default async function createUser(prevState, formData) {
   const name: string = formData.get("name");
   const password: string = formData.get("password");
   const auth = await API.register(name, email, password);
+  console.log(auth);
   if (auth?.error) {
     return {
       success: false,

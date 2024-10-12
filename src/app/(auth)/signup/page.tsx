@@ -1,21 +1,25 @@
 "use client";
 import createUser from "@/app/actions/createUser";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
 import { toast } from "react-toastify";
 
 export default function Signup() {
+  const router = useRouter();
   const [state, formAction] = useFormState(createUser, {
     success: false,
     msg: "",
   });
 
   useEffect(() => {
-    if (state?.error) {
-      toast.error(state.msg);
-    }
-    if (state?.success) {
-      toast.success(state.msg);
+    if (state.msg) {
+      if (state.success) {
+        toast.success(state.msg);
+        router.push("/room/add");
+      } else {
+        toast.error(state.msg);
+      }
     }
   }, [state]);
   return (

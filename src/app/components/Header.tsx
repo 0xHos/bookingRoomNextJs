@@ -4,10 +4,15 @@ import logo from "@/app/assets/logo.svg";
 import Link from "next/link";
 import { BiDoorOpen, BiLogIn, BiUser } from "react-icons/bi";
 import Logout from "./Logout";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { checkIsHaveAuth } from "../store/authSlice";
 
 export default function Header() {
   const isAuth = useSelector((state) => state.authSlice.isAuth);
+  const dispatch = useDispatch();
+
+  dispatch(checkIsHaveAuth());
+  console.log("header load");
   return (
     <>
       <header className="bg-slate-200 flex flex-col md:flex-row items-center p-2 justify-between">
