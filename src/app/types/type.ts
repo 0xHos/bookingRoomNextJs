@@ -9,6 +9,16 @@ export interface IRoom {
   capacity?: string;
   price: string;
   amenities?: null;
-  img?: string;
+  img?: any;
+  bed?: string;
+  bathroom?: string;
+
   $id?: string;
+}
+
+export interface IBooking {
+  user_id: string;
+  room_id: string;
+  ckeckin: string;
+  ckeckout: string;
 }

@@ -1,3 +1,4 @@
+import CreateBooking from "@/app/components/CreateBooking";
 import Headeing from "@/app/components/Heading";
 import API from "@/app/services/api";
 import { IRoom } from "@/app/types/type";
@@ -5,6 +6,10 @@ import { IRoom } from "@/app/types/type";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BiArrowBack } from "react-icons/bi";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaSackDollar } from "react-icons/fa6";
+import { IoBedOutline } from "react-icons/io5";
+import { MdOutlineBathroom } from "react-icons/md";
 
 export default async function Room({ params }) {
   const { id } = params;
@@ -16,57 +21,49 @@ export default async function Room({ params }) {
 
   return (
     <div className="flex flex-col">
-      <Headeing title="Executive Meeting Room" />
+      <Headeing title="Room Details" />
       <Link href={`/`} className="flex items-center gap-2">
         <BiArrowBack /> Back to rooms
       </Link>
-      <section className="flex">
+      <section className="flex gap-6">
         <img
-          className="object-cover w-40 h-40"
+          className="object-cover size-96"
           width={100}
           height={100}
           src={room.img}
           alt={""}
         />
         <div className="flex flex-col items-start space-y-4 pl-2">
-          <p> {room.description}</p>
-          {/* <p> Size: { room.size}</p> */}
-          <p> Availability: {room.availability}</p>
-          <p> Address: {room.address}</p>
-          <p> Price: {room.price}</p>
-        </div>
-      </section>
-      <section className="mt-9">
-        <h2 className="font-bold text-2xl">Booking This Room</h2>
-        <div className="flex w-full mt-6 gap-10">
-          <section className="w-1/2">
-            <label htmlFor="date">Check in date</label>
-            <br />
-            <input type="date" id="date" name="date" className="w-full p-3" />
-          </section>
-          <section className="w-1/2">
-            <label htmlFor="time">Check in time</label>
-            <br />
-            <input type="time" id="time" name="time" className="w-full p-3" />
-          </section>
-        </div>
+          <h1 className="text-2xl font-semibold text-slate-500">
+            {" "}
+            {room.title}
+          </h1>
 
-        <div className="flex w-full mt-6 gap-10">
-          <section className="w-1/2">
-            <label htmlFor="date">Check out date</label>
-            <br />
-            <input type="date" id="date" name="date" className="w-full p-3" />
-          </section>
-          <section className="w-1/2">
-            <label htmlFor="time">Check out time</label>
-            <br />
-            <input type="time" id="time" name="time" className="w-full p-3" />
-          </section>
+          <div className="flex items-center">
+            <FaMapMarkerAlt className="text-red-500 mr-2" />
+            <span className="text-slate-600">{room.address}</span>
+          </div>
+          <div className="flex items-center">
+            <IoBedOutline title="bed count" className="text-red-500 mr-2" />
+            <span className="text-slate-600">{room.bed} Bed</span>
+          </div>
+          <div className="flex items-center">
+            <MdOutlineBathroom
+              title="bathroom"
+              className="text-blue-500 mr-2"
+            />
+            <span className="text-slate-600">{room.bathroom} Bathroom</span>
+          </div>
+          <div className="flex items-center">
+            <FaSackDollar className="text-green-500 mr-2" />
+            <span className="text-slate-600">{room.price}$ in hour</span>
+          </div>
+          <p className="text-slate-500"> {room.description}</p>
         </div>
-        <button className="w-full bg-blue-500 text-white p-3 rounded-md my-8">
-          Book Now
-        </button>
       </section>
+      <div className="">
+        <CreateBooking room_id={id} />
+      </div>
     </div>
   );
 }

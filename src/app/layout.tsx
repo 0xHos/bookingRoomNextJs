@@ -22,7 +22,7 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <Header />
-          <main className="p-5">{children}</main>
+          <main className="p-5 pt-36 bg-slate-50">{children}</main>
           <Footer />
           <ToastContainer />
         </body>
