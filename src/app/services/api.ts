@@ -93,7 +93,7 @@ export default class API {
             title: room.title,
             description: room.description,
             address: room.address,
-            availability: room.availability,
+            availability: "test",
             price: room.price,
             img: room.img,
             bed: room.bed,
@@ -108,6 +108,7 @@ export default class API {
         msg: "room is created",
       };
     } catch (err) {
+      console.log("areRoomCreated", err);
       return {
         success: false,
         msg: "room not created",
@@ -190,6 +191,26 @@ export default class API {
     const config = {
       method: "delete",
       url: `https://cloud.appwrite.io/v1/databases/67074e7200011d0076b1/collections/${collectionIdBookings}/documents/${booking_id}`,
+      headers: {
+        "X-Appwrite-Project": "67074d590029bc32f59b",
+        "X-Appwrite-Key":
+          "standard_4972de822363fa8a80a8ea6cec27fdb13a947d1abb41a37ccdf26b775d3eef220d03b1dc30b95fc5aa6ea1cfb7cef446a92060090cc0d3c843cba4652f198a6895d243e5324f53ed66a525e74bbd9ba40dfeee5645d2e245985558aa120bfe589b00cc8edd3a1de917e6ebdcd9337bc95fda2f57ed920715317f93f22e503f85",
+        "X-Appwrite-Response-Format": "1.6.0",
+        "content-type": "application/json",
+        "User-Agent":
+          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        Referer: `https://cloud.appwrite.io/console/project-67074d590029bc32f59b/databases/database-67074e7200011d0076b1/collection-${collectionIdBookings}`,
+      },
+    };
+
+    const response = await axios(config);
+    return response.data;
+  }
+
+  static async deleteRoomById(room_id: string) {
+    const config = {
+      method: "delete",
+      url: `https://cloud.appwrite.io/v1/databases/67074e7200011d0076b1/collections/${collectionId}/documents/${room_id}`,
       headers: {
         "X-Appwrite-Project": "67074d590029bc32f59b",
         "X-Appwrite-Key":

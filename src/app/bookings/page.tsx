@@ -62,7 +62,7 @@ export default async function Bookings() {
         Bookings
       </div>
       <div className="flex flex-col gap-3 p-10">
-        {info.map((booking) => (
+        {info?.map((booking) => (
           <Card {...booking} />
         ))}
       </div>

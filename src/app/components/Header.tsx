@@ -75,6 +75,8 @@ export default function Header() {
               <li>
                 {isAuth && (
                   <Link
+                    shallow={true}
+                    prefetch={true}
                     className="text-gray-500 transition hover:text-gray-500/75"
                     href="/room/add"
                   >
