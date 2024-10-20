@@ -19,7 +19,6 @@ const headers = {
 };
 export default class API {
   static async register(name: string, email: string, password: string) {
-    console.log("createUserEndpoint", createUserEndpoint);
     try {
       const response = await axios.post(
         createUserEndpoint,
@@ -27,12 +26,10 @@ export default class API {
         { headers }
       );
       const userId = response.data.$id;
-      console.log("signup:", response);
       return {
         userId,
       };
     } catch (err) {
-      console.log("error signup ");
       return {
         error: "error create user please check email or password",
       };
@@ -50,13 +47,11 @@ export default class API {
       );
       const jwt = response.data.secret;
       const userId = response.data.userId;
-      console.log("login:", response);
       return {
         jwt,
         userId,
       };
     } catch (err) {
-      console.log("err login ", err);
       return {
         error: "Invalid email or password.",
       };
@@ -68,9 +63,7 @@ export default class API {
     try {
       const response = await axios.get(Endpoint, { headers });
       return response.data.documents;
-    } catch (err) {
-      console.log("err get all rooms", err);
-    }
+    } catch (err) {}
   }
 
   static async getRoom(id: string) {
@@ -80,7 +73,6 @@ export default class API {
       const response = await axios.get(Endpoint, { headers });
       return response.data;
     } catch (err) {
-      console.log("err get  room ", err);
       return {
         error: "Room Not Found",
       };
@@ -111,14 +103,11 @@ export default class API {
         { headers }
       );
 
-      console.log("create room:");
       return {
         success: true,
         msg: "room is created",
       };
     } catch (err) {
-      console.log("create room error:", err);
-
       return {
         success: false,
         msg: "room not created",

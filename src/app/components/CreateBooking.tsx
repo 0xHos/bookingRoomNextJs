@@ -22,7 +22,9 @@ export default function CreateBooking({ room_id }: { room_id: string }) {
     <form action={formAction}>
       <input type="hidden" name="room_id" value={room_id} />
       <section className="mt-9">
-        <h2 className="font-bold text-2xl text-slate-500">Booking This Room</h2>
+        <h2 className="font-medium text-2xl text-slate-500">
+          Booking This Room
+        </h2>
         <div className="flex w-full mt-6 gap-10">
           <section className="w-1/2">
             <label htmlFor="date">Check in date</label>
@@ -72,7 +74,7 @@ export default function CreateBooking({ room_id }: { room_id: string }) {
             />
           </section>
         </div>
-        <button className="w-full border-2 text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white p-3 rounded-md my-8 ">
+        <button className="w-full border-2 text-primary border-primary hover:bg-primary hover:text-white p-3 rounded-md my-8 ">
           Book Now
         </button>
       </section>

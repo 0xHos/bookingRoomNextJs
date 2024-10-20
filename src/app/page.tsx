@@ -8,11 +8,11 @@ export default async function handler() {
 
   return (
     <>
-      <div className="grid grid-cols-4">
-        {rooms.map((room) => (
+      <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  `}>
+        {rooms?.map((room) => (
           <div
             key={room.$id}
-            className="col-span-1  hover:scale-105 transition-transform duration-300 ease-in-out transform"
+            className="col-span-1  hover:scale-105  transition-transform duration-300 ease-in-out transform"
           >
             <RoomCard {...room} key={room.$id} id={room.$id} />
           </div>

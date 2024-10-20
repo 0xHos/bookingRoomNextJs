@@ -22,7 +22,10 @@ export default function Logout() {
   };
   return (
     <>
-      <button onClick={handle} className="flex gap-2 items-center">
+      <button
+        onClick={handle}
+        className="flex gap-2 items-center text-gray-500 transition hover:text-gray-500/75 "
+      >
         <BiLogOut /> Sign Out{" "}
       </button>
     </>

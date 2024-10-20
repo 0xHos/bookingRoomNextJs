@@ -3,7 +3,11 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoBedOutline } from "react-icons/io5";
 import { FaSackDollar } from "react-icons/fa6";
 import { MdOutlineBathroom } from "react-icons/md";
-
+// import { Spirax } from "next/font/google";
+// const spirax = Spirax({
+//   weight: "400",
+//   subsets: ["latin"],
+// });
 interface PropRoomCard {
   id: string;
   img: string;
@@ -18,7 +22,7 @@ interface PropRoomCard {
 export default function RoomCard(info: PropRoomCard) {
   return (
     <>
-      <div className="flex flex-col shadow-md  m-3 bg-white rounded-lg ">
+      <div className="flex flex-col shadow-md  m-3 bg-white rounded-lg  hover:shadow-secondry ">
         <div className="rounded-lg ">
           <img
             className="object-cover size-full rounded-t-lg"
@@ -27,7 +31,7 @@ export default function RoomCard(info: PropRoomCard) {
           />
         </div>
         <div className="flex flex-col items-start space-y-4 p-4 ">
-          <h2 className="text-lg font-bold text-slate-600 text-center w-full">
+          <h2 className={`text-lg font-bold text-slate-600  w-full `}>
             {info.title}
           </h2>
 
@@ -54,7 +58,7 @@ export default function RoomCard(info: PropRoomCard) {
           </div>
           <Link
             href={`/rooms/${info.id}`}
-            className="w-full bg-white text-blue-700 border-2 border-blue-700  hover:border-blue-700 hover:text-white hover:bg-blue-700   rounded-lg text-center p-3 "
+            className="w-full bg-white text-primary border-2 border-primary  hover:border-primary hover:text-white hover:bg-primary   rounded-lg text-center p-3 "
           >
             View Room
           </Link>

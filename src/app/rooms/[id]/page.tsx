@@ -20,11 +20,11 @@ export default async function Room({ params }) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mx-36">
       <Headeing title="Room Details" />
-      <Link href={`/`} className="flex items-center gap-2">
+      {/* <Link href={`/`} className="flex  gap-2 text-slate-600">
         <BiArrowBack /> Back to rooms
-      </Link>
+      </Link> */}
       <section className="flex gap-6">
         <img
           className="object-cover size-96"
@@ -33,7 +33,7 @@ export default async function Room({ params }) {
           src={room.img}
           alt={""}
         />
-        <div className="flex flex-col items-start space-y-4 pl-2">
+        <div className="flex flex-col items-start  justify-center space-y-4 pl-2">
           <h1 className="text-2xl font-semibold text-slate-500">
             {" "}
             {room.title}

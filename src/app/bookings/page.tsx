@@ -22,10 +22,10 @@ interface PropCard {
 
 const Card = (booking: PropCard) => {
   return (
-    <div className="bg-white flex shadow-lg p-2 items-center  hover:scale-105 transition-transform duration-300 ease-in-out transform justify-around">
-      <div className="flex items-center">
+    <div className="bg-white flex flex-col   md:flex-row shadow-lg p-2 items-center  hover:scale-105 transition-transform duration-300 ease-in-out transform justify-around">
+      <div className="flex flex-col md:flex-row items-center space-y-2">
         <img src={booking.room.img} className="size-32 rounded-full" />
-        <div className="flex flex-col px-4">
+        <div className="flex flex-col px-4 space-y-3">
           <h2 className="text-lg font-bold text-slate-600 text-center w-full">
             {booking.room.title}
           </h2>
@@ -42,7 +42,7 @@ const Card = (booking: PropCard) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-end text-slate-500 ">
+      <div className="flex flex-col  space-y-3 justify-start md:justify-end text-slate-500 mt-3">
         <p>Checkin: {new Date(booking.booking.ckeckin).toLocaleString()}</p>
         <p>Checkout: {new Date(booking.booking.ckeckout).toLocaleString()}</p>
       </div>
@@ -55,11 +55,10 @@ const Card = (booking: PropCard) => {
 
 export default async function Bookings() {
   const info = await getBookingByUserId();
-  console.log("hexres", info);
 
   return (
     <>
-      <div className="pt-10 pl-10 text-slate-500 text-3xl font-bold">
+      <div className="pt-5 pl-10 text-slate-500 text-3xl font-bold">
         Bookings
       </div>
       <div className="flex flex-col gap-3 p-10">
